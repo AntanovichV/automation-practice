@@ -1,6 +1,5 @@
 .idea/
 target/
-/src/test/resources/driver/chromedriver.*
 *.iml
 log/
 build/
