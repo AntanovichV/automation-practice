@@ -1,26 +1,38 @@
 package tests;
 
-import core.BaseEntity;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import core.Constants;
-import io.qameta.allure.Step;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
+import core.Logger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.*;
 
-public class BaseTest extends BaseEntity {
-    @Step("Start the test")
-    @BeforeTest
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+public class BaseTest {
+        protected static Logger logger = Logger.getInstance();
+
+    @BeforeAll
+    public void setUp() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @BeforeEach
     public void beforeTest() {
-        browser.navigate(Constants.BASE_URL);
+        Selenide.open(Constants.BASE_URL);
         logger.logTestName(this.getClass().getName());
     }
 
     public static void navigateTo(String url) {
-        browser.navigate(url);
+        Selenide.open(url);
     }
 
-    @Step("Stop the test")
-    @AfterTest
+    @AfterEach
     public void afterTest() {
         logger.logTestEnd(this.getClass().getName());
+    }
+
+    @AfterAll
+    public void tearDown() {
+        SelenideLogger.removeListener("allure");
     }
 }

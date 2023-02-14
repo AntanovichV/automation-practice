@@ -1,21 +1,19 @@
 package pages;
 
-import core.elements.Button;
-import core.elements.Label;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class AccountPage extends BasePage {
-    private final Button userDropDownMenuButton = new Button(By.xpath("//button[@class=\"action switch\"]"),
-            "Drop down menu Button");
-    private final Button signOutButton = new Button(By.xpath("//li[@class='customer-welcome active']//li[@class=\"authorization-link\"]"),
-            "Sing out Button");
-    private final Label passwordErrorLabel = new Label(By.xpath("//*[@id=\"password-error\"]"),
-            "Password error Label");
-    private final Label alertMessageLabel = new Label(By.xpath("//*[@role=\"alert\"]/div/div"),
-            "Contact already exist Label");
+    private SelenideElement userDropDownMenuButton = $(By.xpath("//button[@class=\"action switch\"]"));
+    private SelenideElement signOutButton = $(By.xpath("//li[@class='customer-welcome active']//li[@class=\"authorization-link\"]"));
+    private SelenideElement passwordErrorLabel = $(By.xpath("//*[@id=\"password-error\"]"));
+    private SelenideElement alertMessageLabel = $(By.xpath("//*[@role=\"alert\"]/div/div"));
 
     public AccountPage() {
-        super(By.xpath("//h1"), "Account page");
+        super("//h1", "Account page");
     }
 
     public boolean isLoginSuccess() {
@@ -23,16 +21,16 @@ public class AccountPage extends BasePage {
     }
 
     public void logout() {
-        userDropDownMenuButton.waitForElementIsClickable();
+        userDropDownMenuButton.shouldBe(Condition.visible);
         userDropDownMenuButton.click();
         signOutButton.click();
     }
 
     public String getAlertMessage() {
-        return alertMessageLabel.getElement().getText();
+        return alertMessageLabel.getText();
     }
 
     public String getPasswordErrorLabel() {
-        return passwordErrorLabel.getElement().getText();
+        return passwordErrorLabel.getText();
     }
 }

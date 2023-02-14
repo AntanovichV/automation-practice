@@ -1,47 +1,42 @@
 package pages;
 
-import core.elements.Button;
-import core.elements.Label;
-import core.elements.TextField;
-import io.qameta.allure.Step;
+
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selenide.$;
+
 public class LoginPage extends BasePage {
-    private final TextField userEmailInput = new TextField(By.xpath("//*[@id=\"email\"]"),
-            "Existing user name Input");
-    private final TextField userPasswordInput = new TextField(By.xpath("//*[@id=\"pass\"]"),
-            "Existing user password Input");
-    private final Button signInButton = new Button(By.xpath("//*[@id=\"send2\"]"),
-            "Sign in Button");
-    private final Label incorrectAccountLabel = new Label(By.xpath("//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div"),
-            "Incorrect account message Label");
+    private SelenideElement userEmailInput = $(By.xpath("//*[@id=\"email\"]"));
+    private SelenideElement userPasswordInput = $(By.xpath("//*[@id=\"pass\"]"));
+    private SelenideElement signInButton = $(By.xpath("//*[@id=\"send2\"]"));
+    private SelenideElement incorrectAccountLabel = $(By.xpath("//*[@id=\"maincontent\"]/div[2]/div[2]/div/div/div"));
 
 
     public LoginPage() {
-        super(By.xpath("//*[@id=\"send2\"]"), "Login page");
+        super("//*[@id=\"send2\"]", "Login page");
     }
 
-    @Step("Enter username")
-    public void setUserEmail(String value) {
-        userEmailInput.sendKeys(value);
+    public LoginPage setUserEmail(String value) {
+        userEmailInput.setValue(value);
+        return this;
     }
 
-    @Step("Enter password")
-    public void setUserPassword(String value) {
+    public LoginPage setUserPassword(String value) {
         userPasswordInput.sendKeys(value);
+        return this;
     }
 
-    @Step("Click on login button")
-    public void clickSignIn() {
+    public LoginPage clickSignIn() {
         signInButton.click();
+        return this;
     }
 
     public boolean isLoginIncorrectMessagePresented() {
-        return incorrectAccountLabel.isEnabled();
+        return incorrectAccountLabel.isDisplayed();
     }
 
-    @Step("Verify error message when invalid credential is provided")
     public String getLoginIncorrectMessageText() {
-        return incorrectAccountLabel.getElement().getText();
+        return incorrectAccountLabel.getText();
     }
 }

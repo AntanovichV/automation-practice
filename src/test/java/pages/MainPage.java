@@ -1,16 +1,16 @@
 package pages;
 
-import core.elements.Button;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selenide.*;
+
 public class MainPage extends BasePage {
-    private final Button loginButton = new Button(By.xpath("//ul[@class='header links']/li[2]/a"),
-            "Login Button");
-    private final Button createAccountButton = new Button(By.xpath("//ul[@class='header links']/li[3]/a"),
-            "Create Account Button");
+    private SelenideElement loginButton = $(By.xpath("//ul[@class='header links']/li[2]/a"));
+    private SelenideElement createAccountButton = $(By.xpath("//ul[@class='header links']/li[3]/a"));
 
     public MainPage() {
-        super(By.xpath("//h2"), "Main page");
+        super("//h1", "Main Page");
     }
 
     public void clickLogin() {

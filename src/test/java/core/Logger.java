@@ -1,7 +1,9 @@
 package core;
 
+import java.util.logging.Level;
+
 public class Logger {
-    private static final org.apache.log4j.Logger LOG4J = org.apache.log4j.Logger.getLogger(Logger.class);
+    private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(Logger.class.getName());
     private static Logger instance = null;
 
     public static synchronized Logger getInstance() {
@@ -12,20 +14,11 @@ public class Logger {
     }
 
     public void info(String message) {
-        LOG4J.info(message);
+        log.log(Level.INFO, message);
     }
 
     public void warn(String message) {
-        LOG4J.warn(message);
-    }
-
-    /**
-     * This method is using for formatting almost all log records
-     *
-     * @param msg Formatted message
-     */
-    private void step(final String msg) {
-        info(msg);
+        log.log(Level.WARNING, message);
     }
 
     public void logTestName(final String testName) {

@@ -1,24 +1,27 @@
 package pages;
 
-import core.elements.Label;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
+import static com.codeborne.selenide.Selenide.$;
+
 abstract class BasePage {
-    private final By locator;
+    private final String locator;
     private final String name;
 
-    BasePage(By locator, String name) {
+    BasePage(String locator, String name) {
         this.locator = locator;
         this.name = name;
         isPageOpen();
     }
 
     private void isPageOpen() {
-        Label elem = new Label(locator, name);
+        SelenideElement element = $(By.xpath(locator));
         try {
-            elem.waitForIsElementPresent();
+            element.shouldBe(Condition.visible);
         } catch (Throwable e) {
-            System.err.println("Page was not opened");
+            e.printStackTrace();
         }
     }
 }
