@@ -1,6 +1,7 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -18,6 +19,7 @@ public class CartPage extends BasePage {
         return itemInCartDetailsLabel.isDisplayed();
     }
 
+    @Step("Click delete product from the cart")
     public void clickDeleteButton() {
         deleteItemCartButton.click();
     }

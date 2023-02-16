@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -18,18 +19,22 @@ public class CreateAccountPage extends BasePage {
         super("//*[@id=\"password-confirmation\"]", "Create account page");
     }
 
+    @Step("Entering  name {0}")
     public void setNewUserNameInput(String value) {
         newUserNameInput.sendKeys(value);
     }
 
+    @Step("Entering surname {0}")
     public void setNewUserSurnameInput(String value) {
         newUserSurnameInput.sendKeys(value);
     }
 
+    @Step("Entering email {0}")
     public void setNewUserEmailInput(String value) {
         newUserEmailInput.sendKeys(value);
     }
 
+    @Step("Entering password {0}")
     public void setNewUserPasswordInput(String value) {
         newUserPasswordInput.sendKeys(value);
     }
@@ -38,6 +43,7 @@ public class CreateAccountPage extends BasePage {
         newUserConfirmPasswordInput.sendKeys(value);
     }
 
+    @Step("Click create account")
     public void clickCreateAccountButton() {
         createAccountButton.click();
     }

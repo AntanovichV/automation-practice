@@ -2,6 +2,7 @@ package pages;
 
 
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -17,16 +18,19 @@ public class LoginPage extends BasePage {
         super("//*[@id=\"send2\"]", "Login page");
     }
 
+    @Step("Entering email {0}")
     public LoginPage setUserEmail(String value) {
         userEmailInput.setValue(value);
         return this;
     }
 
+    @Step("Entering password {0}")
     public LoginPage setUserPassword(String value) {
         userPasswordInput.sendKeys(value);
         return this;
     }
 
+    @Step("Click login")
     public LoginPage clickSignIn() {
         signInButton.click();
         return this;
