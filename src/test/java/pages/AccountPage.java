@@ -27,6 +27,7 @@ public class AccountPage extends BasePage {
     }
 
     public String getAlertMessage() {
+        alertMessageLabel.shouldBe(Condition.visible);
         return alertMessageLabel.getText();
     }
 

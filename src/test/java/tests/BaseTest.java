@@ -28,6 +28,7 @@ public class BaseTest {
 
     @AfterEach
     public void afterTest() {
+        Selenide.closeWebDriver();
         logger.logTestEnd(this.getClass().getName());
     }
 
