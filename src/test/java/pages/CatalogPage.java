@@ -52,7 +52,7 @@ public class CatalogPage extends BasePage {
 
     public void addToCart() {
         addToCartButton.isEnabled();
-        addToCartButton.shouldBe(Condition.visible);
+        addToCartButton.shouldBe(Condition.appear);
         addToCartButton.click();
     }
 

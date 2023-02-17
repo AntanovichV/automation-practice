@@ -1,15 +1,15 @@
 package pages;
 
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
+import ru.yandex.qatools.allure.annotations.Step;
 import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
 public class CartPage extends BasePage {
-    private SelenideElement itemInCartDetailsLabel = $(By.xpath("//td[@data-th='Item']"));
-    private SelenideElement deleteItemCartButton = $(By.xpath("//a[@class='action action-delete']"));
-    private SelenideElement emptyCartMessageLabel = $(By.xpath("//div[@class='cart-empty']/p[1]"));
+    private final SelenideElement itemInCartDetailsLabel = $(By.xpath("//td[@data-th='Item']"));
+    private final SelenideElement deleteItemCartButton = $(By.xpath("//a[@class='action action-delete']"));
+    private final SelenideElement emptyCartMessageLabel = $(By.xpath("//div[@class='cart-empty']/p[1]"));
 
     public CartPage() {
         super("//h1", "Cart page");
