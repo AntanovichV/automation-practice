@@ -62,7 +62,7 @@ public class CatalogPage extends BasePage {
     }
 
     public void clickCart() {
-        productCartNumberLabel.shouldBe(Condition.appear);
+        productCartNumberLabel.shouldBe(Condition.visible);
         cartLabel.click();
         editCartLabel.click();
     }
