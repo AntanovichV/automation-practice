@@ -40,6 +40,7 @@ public class LoginPage extends BasePage {
         return incorrectAccountLabel.isDisplayed();
     }
 
+    @Step("Message text")
     public String getLoginIncorrectMessageText() {
         return incorrectAccountLabel.getText();
     }
